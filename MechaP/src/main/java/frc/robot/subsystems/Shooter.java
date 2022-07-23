@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import static frc.robot.Constants.*;
+
 public class Shooter extends SubsystemBase {
   /** Creates a new Flywheel. */
 
@@ -16,18 +18,18 @@ public class Shooter extends SubsystemBase {
   private TalonSRX flywheelMotorLower;
  
   public Shooter() {
-    flywheelMotorLower = new TalonSRX(10);
-    flywheelMotorUpper = new TalonSRX(12);
+    flywheelMotorLower = new TalonSRX(KFlywheelMotorLower);
+    flywheelMotorUpper = new TalonSRX(KFlywheelMotorUpper);
   }
   
   public void spinFlywheel(double speed) {
     flywheelMotorUpper.set(ControlMode.PercentOutput, speed);
-    flywheelMotorLower.set(ControlMode.Follower, 12);
+    flywheelMotorLower.set(ControlMode.Follower, KFlywheelMotorUpper);
   }
 
   public void stopFlywheel() {
     flywheelMotorUpper.set(ControlMode.PercentOutput, 0);
-    flywheelMotorLower.set(ControlMode.Follower, 12);
+    flywheelMotorLower.set(ControlMode.Follower, KFlywheelMotorUpper);
   }
 
   @Override

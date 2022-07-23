@@ -8,25 +8,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import static frc.robot.Constants.*;
+
 public class Hood extends SubsystemBase {
   /** Creates a new Hood. */
   public TalonSRX hood;
 
   public Hood() {
-    hood = new TalonSRX(6);
+    hood = new TalonSRX(KHoodMotor);
   }
  
  public void raiseHood(){
-        hood.set(ControlMode.PercentOutput, .4);
-      }
+    hood.set(ControlMode.PercentOutput, .4);
+  }
 
-      public void lowerHood(){
-        hood.set(ControlMode.PercentOutput, -.4);
-      }
+  public void lowerHood(){
+    hood.set(ControlMode.PercentOutput, -.4);
+  }
 
-      public void stopHood(){
-        hood.set(ControlMode.PercentOutput, 0);
-      }
+  public void stopHood(){
+    hood.set(ControlMode.PercentOutput, 0);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

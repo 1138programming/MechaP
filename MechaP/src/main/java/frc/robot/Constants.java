@@ -12,4 +12,18 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    // motor ids
+    // Hood
+    public static final int KHoodMotor = 6;
+
+    // Indexer
+    public static final int KIndexerMotor = 8;
+
+    // Flywheel
+    public static final int KFlywheelMotorLower = 10;
+    public static final int KFlywheelMotorUpper = 12;
+
+    //Turret
+    public static final int KTurretMotor = 13;
+}

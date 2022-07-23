@@ -25,6 +25,7 @@ import frc.robot.commands.IndexerStop;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Turret;
 //Commands
 import frc.robot.commands.FlywheelStop;
 import frc.robot.commands.SpinIndexer;
@@ -33,7 +34,9 @@ import frc.robot.commands.IndexerStop;
 import frc.robot.commands.HoodUp;
 import frc.robot.commands.HoodDown;
 import frc.robot.commands.HoodStop;
-
+import frc.robot.commands.SpinTurretClockwise;
+import frc.robot.commands.SpinTurretCounterClockwise;
+import frc.robot.commands.TurretStop;
 
 
 
@@ -49,6 +52,7 @@ public class RobotContainer {
   private final Shooter shooter = new Shooter();
   private final Indexer indexer = new Indexer();
   private final Hood hood = new Hood();
+  private final Turret turret = new Turret();
   //Commands
   private final FlywheelStop flywheelStop = new FlywheelStop(shooter);
   private final SpinIndexer spinIndexer = new SpinIndexer(indexer);
@@ -57,6 +61,9 @@ public class RobotContainer {
   private final HoodUp hoodUp = new HoodUp(hood);
   private final HoodDown hoodDown = new HoodDown(hood);
   private final HoodStop hoodStop = new HoodStop(hood);
+  private final SpinTurretClockwise spinTurretClockwise = new SpinTurretClockwise(turret);
+  private final SpinTurretCounterClockwise spinTurretCounterClockwise = new SpinTurretCounterClockwise(turret);
+  private final TurretStop turretStop = new TurretStop(turret);
   
   //Controller Ports (check in Driver Station, IDs may be different for each computer)
   private static final int KLogitechPort = 0;
@@ -113,9 +120,13 @@ public class RobotContainer {
     xboxBtnB = new JoystickButton(xbox, KXboxButtonB);
     xboxBtnX = new JoystickButton(xbox, KXboxButtonX);
     xboxBtnY = new JoystickButton(xbox, KXboxButtonY);
+    xboxBtnLB = new JoystickButton(xbox, KXboxLeftBumper);
+    xboxBtnRB = new JoystickButton(xbox, KXboxRightBumper);
+
     shooter.setDefaultCommand(flywheelStop);
     indexer.setDefaultCommand(indexerStop);
     hood.setDefaultCommand(hoodStop);
+    turret.setDefaultCommand(turretStop);
     configureButtonBindings();
   }
 
@@ -126,15 +137,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // xboxBtnA.toggleWhenPressed(spinUpFlywheel);
-    // // xboxBtnB.whenHeld(spinIndexer);
-    // xboxBtnB.whileHeld(spinIndexer);
     xboxBtnB.toggleWhenPressed(spinUpFlywheel);
     xboxBtnA.whenHeld(spinIndexer);
     xboxBtnX.whenHeld(hoodDown);
     xboxBtnY.whenHeld(hoodUp);
-    // xboxBtnA.whenHeld(spinUpFlywheel, false);
-    // xboxBtnA.whenHeld(spinIndexer, false);
+    xboxBtnLB.whenHeld(spinTurretCounterClockwise);
+    xboxBtnRB.whenHeld(spinTurretClockwise);
 
   }
 
